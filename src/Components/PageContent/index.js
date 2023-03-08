@@ -1,5 +1,5 @@
 function PageContent() {
-    return ( <div>
+    return ( <div className="pageContent">
         Page content
     </div> );
 }
