@@ -92,7 +92,7 @@ function AppCart() {
     return <div>
         <Badge onClick={() => {
             setCartDrawOpen(true);
-        }} count={5} className='shoppingCartIcon' >
+        }} count={cartItems.length} className='shoppingCartIcon' >
             <ShoppingCartOutlined />
         </Badge>
         <Drawer open={carDrawOpen} onClose={() => {
