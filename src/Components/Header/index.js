@@ -155,13 +155,32 @@ function AppCart() {
             title="Confirm order"
         >
             <Form>
-                <Form.Item label='Full name' name='full_name'>
+                <Form.Item
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Please enter your full name'
+                        }
+                    ]}
+                    label='Full name' name='full_name'>
                     <Input placeholder='Enter your name...' />
                 </Form.Item>
-                <Form.Item label="Email" name="email">
+                <Form.Item
+                    rules={[{
+                        required: true,
+                        type: 'email',
+                        message: 'Please enter a valid email'
+                    }]}
+                    label="Email" name="email">
                     <Input placeholder='Your email...' />
                 </Form.Item>
-                <Form.Item label="Address" name="address">
+
+                <Form.Item
+                    rules={[{
+                        required: true,
+                        message: 'Please enter your address'
+                    }]}
+                    label="Address" name="address">
                     <Input placeholder='Your address...' />
                 </Form.Item>
                 <Button type='primary' htmlType='submit'>Confirm order</Button>
