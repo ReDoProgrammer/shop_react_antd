@@ -22,11 +22,13 @@ function Products() {
     const getSortedItems = ()=>{
         const sortedItems = [...items];
         sortedItems.sort((a,b)=>{
+            const aLowerCase = a.title.toLowerCase();
+            const bLowerCase = b.title.toLowerCase();
             if(sortOrder==='az'){
-                return a.title>b.title?1:a.title === b.title?0:-1;
+                return aLowerCase>bLowerCase?1:aLowerCase === bLowerCase?0:-1;
             }
             else if(sortOrder==='az'){
-                return a.title<b.title?1:a.title === b.title?0:-1;
+                return aLowerCase<bLowerCase?1:aLowerCase ===bLowerCase?0:-1;
             }
             else if(sortOrder==='lowHigh'){
                 return a.price>b.price?1:a.price === b.price?0:-1;
