@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getAllProducts } from "../API";
-import {List, Card, Image,Typography, Badge, Rate} from 'antd';
+import {List, Card, Image,Typography, Badge, Rate, Button} from 'antd';
 //các kiến thức liên quan tới hook: useState,useEffect
 function Products() {
     const [items, setItems] = useState([]);
@@ -17,7 +17,8 @@ function Products() {
             <Card className="itemCard" title={product.title} key={index} 
             cover={<Image className="itemCardImage" src ={product.thumbnail}/>}
             actions={[
-                <Rate value={product.rating} allowHalf/>
+                <Rate value={product.rating} allowHalf/>,
+                <Button>Add to cart</Button>
             ]}
             >
                 <Card.Meta title={<Typography.Paragraph>
