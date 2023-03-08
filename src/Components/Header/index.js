@@ -1,11 +1,12 @@
 import { Menu } from 'antd';
+import {HomeFilled} from '@ant-design/icons';
 function Header() {
     return (<div className="header">
         <Menu
             mode='horizontal'
             items={[
                 {
-                    label: 'Home',
+                    label: <HomeFilled/>,
                     key: 'home'
                 },
                 {
