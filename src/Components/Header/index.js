@@ -1,4 +1,4 @@
-import { Badge, Drawer, InputNumber, Menu, Table, Typography } from 'antd';
+import { Badge, Drawer, InputNumber, Menu, Table, Typography, Button } from 'antd';
 import { HomeFilled, ShoppingCartOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -75,6 +75,7 @@ function Header() {
 
 function AppCart() {
     const [cartItems, setCartItems] = useState([])
+    const [checkoutDrawerOpen, setcheckoutDrawerOpen] = useState(false)
     useEffect(() => {
         getCart()
             .then(res => {
@@ -144,7 +145,15 @@ function AppCart() {
                     return <span>Total: ${total}</span>
                 }}
             ></Table>
+            <Button type='primary' onClick={_=>{
+                setcheckoutDrawerOpen(true);
+            }}>Checkout your cart</Button>
         </Drawer >
+        <Drawer open={checkoutDrawerOpen} onClose={_=>{
+            setcheckoutDrawerOpen(false);
+        }}>
+
+        </Drawer>
     </div >
 }
 
