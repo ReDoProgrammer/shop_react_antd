@@ -1,16 +1,24 @@
 import { useEffect, useState } from "react";
 import { getAllProducts, addToCart,getProductsByCategory } from "../API";
-import { List, Card, Image, Typography, Badge, Rate, Button, message } from 'antd';
+import { List, Card, Image, Typography, Badge, Rate, Button, message, Spin } from 'antd';
 import { useParams } from "react-router-dom";
 //các kiến thức liên quan tới hook: useState,useEffect
 function Products() {
+    const [loading, setloading] = useState(false);
     const param = useParams();
     const [items, setItems] = useState([]);
     useEffect(() => {
+        setloading(true);
         getProductsByCategory(param.categoryId).then(res => {
             setItems(res.products);
+            setloading(false);
         })
     }, [param])// nội dung được load lại khi param thay đổi
+
+    if(loading){
+        return <Spin spinning/>
+    }
+
     return <div>
         <List
             grid={{ column: 4 }}
