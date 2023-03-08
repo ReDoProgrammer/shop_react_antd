@@ -1,4 +1,4 @@
-import { Badge, Drawer, Menu, Table, Typography } from 'antd';
+import { Badge, Drawer, InputNumber, Menu, Table, Typography } from 'antd';
 import { HomeFilled, ShoppingCartOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -100,15 +100,24 @@ function AppCart() {
                 },
                 {
                     title:"Price",
-                    dataIndex:"price"
+                    dataIndex:"price",
+                    render:value=>{
+                        return <span>${value}</span>
+                    }
                 },
                 {
                     title:"Q.ty",
-                    dataIndex:"quantity"
+                    dataIndex:"quantity",
+                    render:value=>{
+                        return <InputNumber defaultValue={value}></InputNumber>
+                    }
                 },
                 {
                     title:"Total",
-                    dataIndex:"total"
+                    dataIndex:"total",
+                    render:value=>{
+                        return <span>${value}</span>
+                    }
                 }
             ]}
             dataSource={cartItems}
