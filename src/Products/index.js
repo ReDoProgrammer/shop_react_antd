@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getAllProducts, addToCart,getProductsByCategory } from "../API";
-import { List, Card, Image, Typography, Badge, Rate, Button, message, Spin } from 'antd';
+import { List, Card, Image, Typography, Badge, Rate, Button, message, Spin, Select } from 'antd';
 import { useParams } from "react-router-dom";
 //các kiến thức liên quan tới hook: useState,useEffect
 function Products() {
@@ -22,7 +22,30 @@ function Products() {
         return <Spin spinning/>
     }
 
-    return <div>
+    return <div className="productsContainer">
+        <div>
+            <Typography.Text>View items sorted by:</Typography.Text>
+            <Select 
+            defaultValue={"az"}
+            options={[
+                {
+                    label:'Alphabetically a-z',
+                    value:'az'
+                },
+                {
+                    label:'Alphabetically z-a',
+                    value:'za'
+                },
+                {
+                    label:'Price Low to High',
+                    value:'lowHigh'
+                },
+                {
+                    label:'Price High to Low',
+                    value:'highLow'
+                }
+            ]}></Select>
+        </div>
         <List
             grid={{ column: 4 }}
 
