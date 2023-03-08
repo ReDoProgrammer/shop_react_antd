@@ -18,7 +18,7 @@ function Products() {
             cover={<Image className="itemCardImage" src ={product.thumbnail}/>}
             actions={[
                 <Rate value={product.rating} allowHalf/>,
-                <Button type="link">Add to cart</Button>
+                <AddToCartButton/>
             ]}
             >
                 <Card.Meta title={<Typography.Paragraph>
@@ -37,6 +37,15 @@ function Products() {
 
         </List>
     </div>
+}
+
+function AddToCartButton(){
+    const addProductToCart = ()=>{
+        
+    }
+    return <Button type="link"  onClick={()=>{
+        addProductToCart();
+    }}>Add to cart</Button>
 }
 
 export default Products;
