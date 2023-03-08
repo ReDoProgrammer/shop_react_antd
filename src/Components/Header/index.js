@@ -94,7 +94,9 @@ function AppCart() {
             title="Your cart"
             contentWrapperStyle={{width:500}}
         >
-            <Table columns={[
+            <Table 
+            pagination={false}
+            columns={[
                 {
                     title:"Product",
                     dataIndex:"title"
