@@ -113,15 +113,19 @@ function AppCart() {
                         dataIndex: "quantity",
 
                         render: (value, record) => {
-                            return <InputNumber min={0} defaultValue={value} onChange={value => {
-                                setCartItems(pre => pre.map(cart => {
-                                    if (record.id == cart.id) {
-                                        cart.total = cart.price * value;
-                                    }
-                                    return cart;
-                                })
+                            return <InputNumber min={0} defaultValue={value}
+                               onChange={value=>{
+                                setCartItems(pre=>
+                                    pre.map(cart=>{
+                                        if(record.id === cart.id){
+                                            cart.total = cart.price * value;
+                                        }
+                                        console.log(cart);
+                                        return cart;
+                                    })
                                 )
-                            }} ></InputNumber>
+                               }}
+                            ></InputNumber>
                         }
                     },
                     {
@@ -135,7 +139,7 @@ function AppCart() {
                 dataSource={cartItems}
                 summary={data => {
                     const total = data.reduce((pre, current) => {
-                        return pre + current.price;
+                        return pre + current.total;
                     }, 0);
                     return <span>Total: ${total}</span>
                 }}
