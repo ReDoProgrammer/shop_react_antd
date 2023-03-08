@@ -1,7 +1,8 @@
+import Products from "../../Products";
+
 function Category() {
     return (  <div>
-        <h1>Category</h1>
-
+       <Products/>
     </div>);
 }
 
