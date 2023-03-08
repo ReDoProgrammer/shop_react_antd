@@ -111,8 +111,9 @@ function AppCart() {
                 {
                     title:"Q.ty",
                     dataIndex:"quantity",
+                    
                     render:value=>{
-                        return <InputNumber defaultValue={value}></InputNumber>
+                        return <InputNumber min={0} defaultValue={value}></InputNumber>
                     }
                 },
                 {
