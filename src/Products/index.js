@@ -11,17 +11,18 @@ function Products() {
     }, [])// dung mảng trống [] chỉ gọi 1 lần
     return <div>
         <List 
-        grid={{column:3}}
+        grid={{column:4}}
         renderItem={(product,index)=>{
-            return <Card title={product.title} key={index} cover={<Image className="itemCardImage" src ={product.thumbnail}/>}>
+            return <Card className="itemCard" title={product.title} key={index} cover={<Image className="itemCardImage" src ={product.thumbnail}/>}>
                 <Card.Meta title={<Typography.Paragraph>
                     Price: ${product.price}{" "}
                     <Typography.Text delete type="danger">
-                        {parseFloat(product.price + (product.price*product.discountPercentage)/100).toFixed(2)}
-                       
+                        ${parseFloat(product.price + (product.price*product.discountPercentage)/100).toFixed(2)}                       
                     </Typography.Text>
-                </Typography.Paragraph>}>
-
+                </Typography.Paragraph>}
+                    description={<Typography.Paragraph ellipsis={{rows:2,expandable:true,symbol:"more"}}>{product.description}</Typography.Paragraph>}
+                >
+                    
                 </Card.Meta>
             </Card>
         }} dataSource={items}>
