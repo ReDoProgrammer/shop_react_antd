@@ -92,48 +92,56 @@ function AppCart() {
             setcarDrawOpen(false);
         }}
             title="Your cart"
-            contentWrapperStyle={{width:500}}
+            contentWrapperStyle={{ width: 500 }}
         >
-            <Table 
-            pagination={false}
-            columns={[
-                {
-                    title:"Product",
-                    dataIndex:"title"
-                },
-                {
-                    title:"Price",
-                    dataIndex:"price",
-                    render:value=>{
-                        return <span>${value}</span>
+            <Table
+                pagination={false}
+                columns={[
+                    {
+                        title: "Product",
+                        dataIndex: "title"
+                    },
+                    {
+                        title: "Price",
+                        dataIndex: "price",
+                        render: value => {
+                            return <span>${value}</span>
+                        }
+                    },
+                    {
+                        title: "Q.ty",
+                        dataIndex: "quantity",
+
+                        render: (value, record) => {
+                            return <InputNumber min={0} defaultValue={value} onChange={value => {
+                                setCartItems(pre => pre.map(cart => {
+                                    if (record.id == cart.id) {
+                                        cart.total = cart.price * value;
+                                    }
+                                    return cart;
+                                })
+                                )
+                            }} ></InputNumber>
+                        }
+                    },
+                    {
+                        title: "Total",
+                        dataIndex: "total",
+                        render: value => {
+                            return <span>${value}</span>
+                        }
                     }
-                },
-                {
-                    title:"Q.ty",
-                    dataIndex:"quantity",
-                    
-                    render:value=>{
-                        return <InputNumber min={0} defaultValue={value}></InputNumber>
-                    }
-                },
-                {
-                    title:"Total",
-                    dataIndex:"total",
-                    render:value=>{
-                        return <span>${value}</span>
-                    }
-                }
-            ]}
-            dataSource={cartItems}
-            summary={data=>{
-                const total = data.reduce((pre,current)=>{
-                    return pre+current.price;
-                },0);
-                return <span>Total: ${total}</span>
-            }}
+                ]}
+                dataSource={cartItems}
+                summary={data => {
+                    const total = data.reduce((pre, current) => {
+                        return pre + current.price;
+                    }, 0);
+                    return <span>Total: ${total}</span>
+                }}
             ></Table>
-        </Drawer>
-    </div>
+        </Drawer >
+    </div >
 }
 
 export default Header;
