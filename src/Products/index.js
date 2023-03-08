@@ -14,7 +14,13 @@ function Products() {
         grid={{column:3}}
         renderItem={(product,index)=>{
             return <Card title={product.title} key={index} cover={<Image className="itemCardImage" src ={product.thumbnail}/>}>
-                <Card.Meta title={<Typography.Paragraph>${product.price}</Typography.Paragraph>}>
+                <Card.Meta title={<Typography.Paragraph>
+                    Price: ${product.price}{" "}
+                    <Typography.Text delete type="danger">
+                        {parseFloat(product.price + (product.price*product.discountPercentage)/100).toFixed(2)}
+                       
+                    </Typography.Text>
+                </Typography.Paragraph>}>
 
                 </Card.Meta>
             </Card>
