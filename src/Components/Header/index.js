@@ -1,6 +1,7 @@
-import { Badge, Menu, Typography } from 'antd';
+import { Badge, Drawer, Menu, Typography } from 'antd';
 import { HomeFilled, ShoppingCartOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 function Header() {
     const navigate = useNavigate();
@@ -72,9 +73,17 @@ function Header() {
 }
 
 function AppCart() {
-    return <Badge count={5} className='shoppingCartIcon' >
-        <ShoppingCartOutlined />
-    </Badge>
+    const [carDrawOpen, setcarDrawOpen] = useState(false)
+    return <div>
+        <Badge onClick={()=>{
+            setcarDrawOpen(true);
+        }} count={5} className='shoppingCartIcon' >
+            <ShoppingCartOutlined />
+        </Badge>
+        <Drawer open={carDrawOpen} onClose={()=>{
+            setcarDrawOpen(false);
+        }}></Drawer>
+    </div>
 }
 
 export default Header;
