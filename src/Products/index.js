@@ -18,7 +18,7 @@ function Products() {
             cover={<Image className="itemCardImage" src ={product.thumbnail}/>}
             actions={[
                 <Rate value={product.rating} allowHalf/>,
-                <Button>Add to cart</Button>
+                <Button type="link">Add to cart</Button>
             ]}
             >
                 <Card.Meta title={<Typography.Paragraph>
