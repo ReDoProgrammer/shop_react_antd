@@ -1,4 +1,4 @@
-import { Badge, Drawer, InputNumber, Menu, Table, Typography, Button } from 'antd';
+import { Badge, Drawer, InputNumber, Menu, Table, Typography, Button, Form, Input } from 'antd';
 import { HomeFilled, ShoppingCartOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -115,17 +115,17 @@ function AppCart() {
 
                         render: (value, record) => {
                             return <InputNumber min={0} defaultValue={value}
-                               onChange={value=>{
-                                setCartItems(pre=>
-                                    pre.map(cart=>{
-                                        if(record.id === cart.id){
-                                            cart.total = cart.price * value;
-                                        }
-                                        console.log(cart);
-                                        return cart;
-                                    })
-                                )
-                               }}
+                                onChange={value => {
+                                    setCartItems(pre =>
+                                        pre.map(cart => {
+                                            if (record.id === cart.id) {
+                                                cart.total = cart.price * value;
+                                            }
+                                            console.log(cart);
+                                            return cart;
+                                        })
+                                    )
+                                }}
                             ></InputNumber>
                         }
                     },
@@ -145,14 +145,27 @@ function AppCart() {
                     return <span>Total: ${total}</span>
                 }}
             ></Table>
-            <Button type='primary' onClick={_=>{
+            <Button type='primary' onClick={_ => {
                 setcheckoutDrawerOpen(true);
             }}>Checkout your cart</Button>
         </Drawer >
-        <Drawer open={checkoutDrawerOpen} onClose={_=>{
+        <Drawer open={checkoutDrawerOpen} onClose={_ => {
             setcheckoutDrawerOpen(false);
-        }}>
-
+        }}
+            title="Confirm order"
+        >
+            <Form>
+                <Form.Item label='Full name' name='full_name'>
+                    <Input placeholder='Enter your name...' />
+                </Form.Item>
+                <Form.Item label="Email" name="email">
+                    <Input placeholder='Your email...' />
+                </Form.Item>
+                <Form.Item label="Address" name="address">
+                    <Input placeholder='Your address...' />
+                </Form.Item>
+                <Button type='primary' htmlType='submit'>Confirm order</Button>
+            </Form>
         </Drawer>
     </div >
 }
