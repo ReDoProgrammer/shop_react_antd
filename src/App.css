@@ -14,7 +14,7 @@
 .shoppingCartIcon{
   font-size: 30px;
   margin-right: 25px;
-
+  cursor: pointer;
 }
 
 .pageContent{
