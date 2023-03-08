@@ -30,7 +30,7 @@ function Header() {
                         },
                         {
                             label:"Men's Watches",
-                            key:"mens watches"
+                            key:"mens-watches"
                         }
                     ]
                 },
@@ -40,7 +40,7 @@ function Header() {
                     children:[
                         {
                             label:"Women's Dresses",
-                            key:"woments-dresses"
+                            key:"womens-dresses"
                         },
                         {
                             label:"Women's Shoes",

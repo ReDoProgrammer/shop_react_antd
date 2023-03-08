@@ -1,17 +1,20 @@
 import { useEffect, useState } from "react";
-import { getAllProducts, addToCart } from "../API";
+import { getAllProducts, addToCart,getProductsByCategory } from "../API";
 import { List, Card, Image, Typography, Badge, Rate, Button, message } from 'antd';
+import { useParams } from "react-router-dom";
 //các kiến thức liên quan tới hook: useState,useEffect
 function Products() {
+    const param = useParams();
     const [items, setItems] = useState([]);
     useEffect(() => {
-        getAllProducts().then(res => {
+        getProductsByCategory(param.categoryId).then(res => {
             setItems(res.products);
         })
-    }, [])// dung mảng trống [] chỉ gọi 1 lần
+    }, [param])// nội dung được load lại khi param thay đổi
     return <div>
         <List
             grid={{ column: 4 }}
+
             renderItem={(product, index) => {
                 return <Badge.Ribbon text={product.discountPercentage} color="pink" className="itemCardBadge">
                     <Card className="itemCard" title={product.title} key={index}
