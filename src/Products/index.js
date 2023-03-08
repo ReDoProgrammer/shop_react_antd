@@ -10,7 +10,9 @@ function Products() {
         })
     }, [])// dung mảng trống [] chỉ gọi 1 lần
     return <div>
-        <List renderItem={(product,index)=>{
+        <List 
+        grid={{column:3}}
+        renderItem={(product,index)=>{
             return <Card title={product.title} key={index} cover={<Image src ={product.thumbnail}/>}>
 
             </Card>
