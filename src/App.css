@@ -19,7 +19,7 @@
   background-color: black;
 }
 
-.itemCard{
+.itemCard, .itemCardBadge{
   margin:8px;
 }
 
