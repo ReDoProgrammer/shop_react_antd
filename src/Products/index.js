@@ -13,7 +13,7 @@ function Products() {
         <List 
         grid={{column:3}}
         renderItem={(product,index)=>{
-            return <Card title={product.title} key={index} cover={<Image src ={product.thumbnail}/>}>
+            return <Card title={product.title} key={index} cover={<Image className="itemCardImage" src ={product.thumbnail}/>}>
 
             </Card>
         }} dataSource={items}>
