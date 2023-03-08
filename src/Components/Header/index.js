@@ -1,4 +1,4 @@
-import { Badge, Drawer, Menu, Typography } from 'antd';
+import { Badge, Drawer, Menu, Table, Typography } from 'antd';
 import { HomeFilled, ShoppingCartOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -92,7 +92,28 @@ function AppCart() {
             setcarDrawOpen(false);
         }}
             title="Your cart"
-        ></Drawer>
+        >
+            <Table columns={[
+                {
+                    title:"Title",
+                    dataIndex:"title"
+                },
+                {
+                    title:"Price",
+                    dataIndex:"price"
+                },
+                {
+                    title:"Q.ty",
+                    dataIndex:"quantity"
+                },
+                {
+                    title:"Total",
+                    dataIndex:"total"
+                }
+            ]}
+            dataSource={cartItems}
+            ></Table>
+        </Drawer>
     </div>
 }
 
