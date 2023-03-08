@@ -92,10 +92,11 @@ function AppCart() {
             setcarDrawOpen(false);
         }}
             title="Your cart"
+            contentWrapperStyle={{width:500}}
         >
             <Table columns={[
                 {
-                    title:"Title",
+                    title:"Product",
                     dataIndex:"title"
                 },
                 {
