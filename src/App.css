@@ -12,6 +12,9 @@
   align-items: center;
   box-shadow: 1px 4px 4px #00000033;
 }
+.appMenu{
+  border: none;
+}
 .shoppingCartIcon{
   font-size: 30px;
   margin-right: 25px;

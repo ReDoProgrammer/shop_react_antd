@@ -10,7 +10,7 @@ function Header() {
         navigate(`/${item.key}`)
     }
     return (<div className="header">
-        <Menu
+        <Menu className='appMenu'
             onClick={onMenuClick}
             mode='horizontal'
             items={[
