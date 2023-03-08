@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getAllProducts, addToCart,getProductsByCategory } from "../API";
+import { getAllProducts, addToCart, getProductsByCategory } from "../API";
 import { List, Card, Image, Typography, Badge, Rate, Button, message, Spin, Select } from 'antd';
 import { useParams } from "react-router-dom";
 //các kiến thức liên quan tới hook: useState,useEffect
@@ -10,31 +10,31 @@ function Products() {
     const [sortOrder, setSortOrder] = useState('az');
     useEffect(() => {
         setloading(true);
-        (param?.categoryId?getProductsByCategory(param.categoryId)
-        :getAllProducts()
+        (param?.categoryId ? getProductsByCategory(param.categoryId)
+            : getAllProducts()
         )
-        .then(res => {
-            setItems(res.products);
-            setloading(false);
-        })
+            .then(res => {
+                setItems(res.products);
+                setloading(false);
+            })
     }, [param])// nội dung được load lại khi param thay đổi
 
-    const getSortedItems = ()=>{
+    const getSortedItems = () => {
         const sortedItems = [...items];
-        sortedItems.sort((a,b)=>{
+        sortedItems.sort((a, b) => {
             const aLowerCase = a.title.toLowerCase();
             const bLowerCase = b.title.toLowerCase();
-            if(sortOrder==='az'){
-                return aLowerCase>bLowerCase?1:aLowerCase === bLowerCase?0:-1;
+            if (sortOrder === 'az') {
+                return aLowerCase > bLowerCase ? 1 : aLowerCase === bLowerCase ? 0 : -1;
             }
-            else if(sortOrder==='az'){
-                return aLowerCase<bLowerCase?1:aLowerCase ===bLowerCase?0:-1;
+            else if (sortOrder === 'az') {
+                return aLowerCase < bLowerCase ? 1 : aLowerCase === bLowerCase ? 0 : -1;
             }
-            else if(sortOrder==='lowHigh'){
-                return a.price>b.price?1:a.price === b.price?0:-1;
+            else if (sortOrder === 'lowHigh') {
+                return a.price > b.price ? 1 : a.price === b.price ? 0 : -1;
             }
             else {
-                return a.title<b.title?1:a.price === b.price?0:-1;
+                return a.title < b.title ? 1 : a.price === b.price ? 0 : -1;
             }
         })
         return sortedItems;
@@ -45,36 +45,36 @@ function Products() {
     return <div className="productsContainer">
         <div>
             <Typography.Text>View items sorted by:</Typography.Text>
-            <Select 
-            onChange={value=>{
-                setSortOrder(value);
-            }}
-            defaultValue={"az"}
-            options={[
-                {
-                    label:'Alphabetically a-z',
-                    value:'az'
-                },
-                {
-                    label:'Alphabetically z-a',
-                    value:'za'
-                },
-                {
-                    label:'Price Low to High',
-                    value:'lowHigh'
-                },
-                {
-                    label:'Price High to Low',
-                    value:'highLow'
-                }
-            ]}></Select>
+            <Select
+                onChange={value => {
+                    setSortOrder(value);
+                }}
+                defaultValue={"az"}
+                options={[
+                    {
+                        label: 'Alphabetically a-z',
+                        value: 'az'
+                    },
+                    {
+                        label: 'Alphabetically z-a',
+                        value: 'za'
+                    },
+                    {
+                        label: 'Price Low to High',
+                        value: 'lowHigh'
+                    },
+                    {
+                        label: 'Price High to Low',
+                        value: 'highLow'
+                    }
+                ]}></Select>
         </div>
         <List
-            loading = {loading}
+            loading={loading}
             grid={{ column: 4 }}
 
             renderItem={(product, index) => {
-                return <Badge.Ribbon text={product.discountPercentage} color="pink" className="itemCardBadge">
+                return <Badge.Ribbon text={`${product.discountPercentage}% OFF`} color="pink" className="itemCardBadge">
                     <Card className="itemCard" title={product.title} key={index}
                         cover={<Image className="itemCardImage" src={product.thumbnail} />}
                         actions={[
@@ -112,7 +112,7 @@ function AddToCartButton({ item }) {
     return <Button type="link" onClick={() => {
         addProductToCart();
     }}
-    loading = {loading}
+        loading={loading}
     >Add to cart</Button>
 }
 
