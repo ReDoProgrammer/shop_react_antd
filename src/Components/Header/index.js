@@ -124,6 +124,12 @@ function AppCart() {
                 }
             ]}
             dataSource={cartItems}
+            summary={data=>{
+                const total = data.reduce((pre,current)=>{
+                    return pre+current.price;
+                },0);
+                return <span>Total: ${total}</span>
+            }}
             ></Table>
         </Drawer>
     </div>
