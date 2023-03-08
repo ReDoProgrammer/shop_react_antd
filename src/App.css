@@ -7,6 +7,14 @@
 
 .header{
   height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.shoppingCartIcon{
+  font-size: 30px;
+  margin-right: 25px;
+
 }
 
 .pageContent{
