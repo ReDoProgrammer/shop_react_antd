@@ -9,7 +9,10 @@ function Products() {
     const [items, setItems] = useState([]);
     useEffect(() => {
         setloading(true);
-        getProductsByCategory(param.categoryId).then(res => {
+        (param?.categoryId?getProductsByCategory(param.categoryId)
+        :getAllProducts()
+        )
+        .then(res => {
             setItems(res.products);
             setloading(false);
         })
