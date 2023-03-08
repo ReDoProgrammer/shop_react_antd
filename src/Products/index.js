@@ -7,6 +7,7 @@ function Products() {
     const [loading, setloading] = useState(false);
     const param = useParams();
     const [items, setItems] = useState([]);
+    const [sortOrder, setSortOrder] = useState('az');
     useEffect(() => {
         setloading(true);
         (param?.categoryId?getProductsByCategory(param.categoryId)
@@ -18,6 +19,25 @@ function Products() {
         })
     }, [param])// nội dung được load lại khi param thay đổi
 
+    const getSortedItems = ()=>{
+        const sortedItems = [...items];
+        sortedItems.sort((a,b)=>{
+            if(sortOrder==='az'){
+                return a.title>b.title?1:a.title === b.title?0:-1;
+            }
+            else if(sortOrder==='az'){
+                return a.title<b.title?1:a.title === b.title?0:-1;
+            }
+            else if(sortOrder==='lowHigh'){
+                return a.price>b.price?1:a.price === b.price?0:-1;
+            }
+            else {
+                return a.title<b.title?1:a.price === b.price?0:-1;
+            }
+        })
+        return sortedItems;
+    }
+
     if(loading){
         return <Spin spinning/>
     }
@@ -26,6 +46,9 @@ function Products() {
         <div>
             <Typography.Text>View items sorted by:</Typography.Text>
             <Select 
+            onChange={value=>{
+                setSortOrder(value);
+            }}
             defaultValue={"az"}
             options={[
                 {
@@ -70,7 +93,7 @@ function Products() {
                         </Card.Meta>
                     </Card>
                 </Badge.Ribbon>
-            }} dataSource={items}>
+            }} dataSource={getSortedItems(items)}>
 
         </List>
     </div>
