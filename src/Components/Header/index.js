@@ -1,4 +1,4 @@
-import { Badge, Drawer, InputNumber, Menu, Table, Typography, Button, Form, Input } from 'antd';
+import { Badge, Drawer, InputNumber, Menu, Table, Typography, Button, Form, Input, Checkbox, message } from 'antd';
 import { HomeFilled, ShoppingCartOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -75,22 +75,28 @@ function Header() {
 
 function AppCart() {
     const [cartItems, setCartItems] = useState([])
-    const [checkoutDrawerOpen, setcheckoutDrawerOpen] = useState(false)
+    const [checkoutDrawerOpen, setCheckoutDrawerOpen] = useState(false)
     useEffect(() => {
         getCart()
             .then(res => {
                 setCartItems(res.products);
             })
     }, [])
-    const [carDrawOpen, setcarDrawOpen] = useState(false)
+    const [carDrawOpen, setCartDrawOpen] = useState(false);
+    const onConfirmOrder=values=>{
+        console.log({values});
+        setCartDrawOpen(false);
+        setCheckoutDrawerOpen(false);
+        message.success('Your order has been placed successfully.');
+    }
     return <div>
         <Badge onClick={() => {
-            setcarDrawOpen(true);
+            setCartDrawOpen(true);
         }} count={5} className='shoppingCartIcon' >
             <ShoppingCartOutlined />
         </Badge>
         <Drawer open={carDrawOpen} onClose={() => {
-            setcarDrawOpen(false);
+            setCartDrawOpen(false);
         }}
             title="Your cart"
             contentWrapperStyle={{ width: 500 }}
@@ -146,15 +152,15 @@ function AppCart() {
                 }}
             ></Table>
             <Button type='primary' onClick={_ => {
-                setcheckoutDrawerOpen(true);
+                setCheckoutDrawerOpen(true);
             }}>Checkout your cart</Button>
         </Drawer >
         <Drawer open={checkoutDrawerOpen} onClose={_ => {
-            setcheckoutDrawerOpen(false);
+            setCheckoutDrawerOpen(false);
         }}
             title="Confirm order"
         >
-            <Form>
+            <Form onFinish={onConfirmOrder}>
                 <Form.Item
                     rules={[
                         {
@@ -183,6 +189,10 @@ function AppCart() {
                     label="Address" name="address">
                     <Input placeholder='Your address...' />
                 </Form.Item>
+                <Form.Item>
+                    <Checkbox name='cod' defaultChecked disabled>Cash on Delivery</Checkbox>
+                </Form.Item>
+                <Typography.Paragraph type='secondary'>More method coming soon</Typography.Paragraph>
                 <Button type='primary' htmlType='submit'>Confirm order</Button>
             </Form>
         </Drawer>
