@@ -40,9 +40,7 @@ function Products() {
         return sortedItems;
     }
 
-    if(loading){
-        return <Spin spinning/>
-    }
+
 
     return <div className="productsContainer">
         <div>
@@ -72,6 +70,7 @@ function Products() {
             ]}></Select>
         </div>
         <List
+            loading = {loading}
             grid={{ column: 4 }}
 
             renderItem={(product, index) => {
