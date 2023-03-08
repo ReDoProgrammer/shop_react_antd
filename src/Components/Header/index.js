@@ -61,8 +61,8 @@ function Header() {
                     ]
                 },
                 {
-                    label: 'Accessories',
-                    key: 'accessories'
+                    label: 'Fragrances',
+                    key: 'fragrances'
                 }
             ]}
         />
