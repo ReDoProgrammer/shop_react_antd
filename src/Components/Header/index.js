@@ -1,7 +1,8 @@
 import { Badge, Drawer, Menu, Typography } from 'antd';
 import { HomeFilled, ShoppingCartOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { getCart } from '../../API';
 
 function Header() {
     const navigate = useNavigate();
@@ -73,16 +74,25 @@ function Header() {
 }
 
 function AppCart() {
+    const [cartItems, setCartItems] = useState([])
+    useEffect(() => {
+        getCart()
+            .then(res => {
+                setCartItems(res.products);
+            })
+    }, [])
     const [carDrawOpen, setcarDrawOpen] = useState(false)
     return <div>
-        <Badge onClick={()=>{
+        <Badge onClick={() => {
             setcarDrawOpen(true);
         }} count={5} className='shoppingCartIcon' >
             <ShoppingCartOutlined />
         </Badge>
-        <Drawer open={carDrawOpen} onClose={()=>{
+        <Drawer open={carDrawOpen} onClose={() => {
             setcarDrawOpen(false);
-        }}></Drawer>
+        }}
+            title="Your cart"
+        ></Drawer>
     </div>
 }
 
